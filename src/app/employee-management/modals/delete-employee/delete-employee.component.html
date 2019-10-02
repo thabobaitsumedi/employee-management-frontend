@@ -1,0 +1,17 @@
+<div>
+    <mat-toolbar>
+        <span>{{data.title}}</span>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-dialog-close mat-stroked-button tabIndex="-1">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-dialog-content>
+        Are you sure you want to delete this employee?
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button color="primary"
+            mat-button (click)="onDelete()">Yes</button>
+        <button color="warn" mat-button (click)="onDialogClose()">No</button>
+    </mat-dialog-actions>
+</div>

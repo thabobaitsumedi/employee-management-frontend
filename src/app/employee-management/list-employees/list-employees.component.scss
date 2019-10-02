@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
+}
+
+.dashboard-card-content {
+  text-align: left;
+}
+
+.search-items {
+  align-content: flex-end;
+  align-items: flex-end;
+}
+
+.table-header {
+  text-align: center;
+}

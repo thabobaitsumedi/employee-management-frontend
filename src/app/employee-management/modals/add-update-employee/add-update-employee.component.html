@@ -1,0 +1,183 @@
+<div>
+    <mat-toolbar>
+        <span>{{data.title}}</span>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-dialog-close mat-stroked-button tabIndex="-1">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-dialog-content>
+        <mat-tab-group>
+            <mat-tab>
+                <div>
+                    <ng-template mat-tab-label>
+                        <mat-icon>assignment_ind</mat-icon>
+                        <span> Details </span>
+                    </ng-template>
+                </div>
+                <form class="normal-form" [formGroup]="addUpdateEmployeeForm" autocomplete="off">
+                    <input type="hidden" formControlName="employeeId">
+                    <mat-form-field class="full-width">
+                        <mat-label>First Name</mat-label>
+                        <input formControlName="firstName" matInput placeholder="first name" required>
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error *ngIf="firstName?.invalid">
+                            first name is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Last Name</mat-label>
+                        <input formControlName="lastName" matInput placeholder="last name" required>
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error *ngIf="lastName?.invalid">
+                            last name is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Email Address</mat-label>
+                        <input formControlName="emailAddress" matInput placeholder="email address" required>
+                        <mat-icon matSuffix class="secondary-text">contact_mail</mat-icon>
+                        <mat-error *ngIf="emailAddress?.invalid">
+                            email address is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Phone Number</mat-label>
+                        <input formControlName="phoneNumber" matInput placeholder="phone number" required>
+                        <mat-icon matSuffix class="secondary-text">contact_phone</mat-icon>
+                        <mat-error *ngIf="phoneNumber?.invalid">
+                            phone number is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Birth Date</mat-label>
+                        <input matInput formControlName="doB" [matDatepicker]="doB" placeholder="choose a date of birth"
+                            required>
+                        <mat-datepicker-toggle matSuffix [for]="doB"></mat-datepicker-toggle>
+                        <mat-datepicker #doB></mat-datepicker>
+                        <mat-error *ngIf="doB?.invalid">
+                            birth date is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Hire Date</mat-label>
+                        <input formControlName="hireDate" matInput [matDatepicker]="hireDate"
+                            placeholder="choose a hire date" required>
+                        <mat-datepicker-toggle matSuffix [for]="hireDate"></mat-datepicker-toggle>
+                        <mat-datepicker #hireDate></mat-datepicker>
+                        <mat-error *ngIf="hireDate?.invalid">
+                            hire date is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="genderId" required>
+                            <mat-option *ngFor="let gender of genders" [value]="gender.genderId">
+                                {{gender.genderDescription}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="genderId?.invalid">
+                            gender is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Job</mat-label>
+                        <mat-select formControlName="jobId" required>
+                            <mat-option *ngFor="let job of jobs" [value]="job.jobId">
+                                {{job.jobTitle}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="jobId?.invalid">
+                            job type is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="departmentId" required>
+                            <mat-option *ngFor="let department of departments" [value]="department.departmentId">
+                                {{department.departmentName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="departmentId?.invalid">
+                            department is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Manager</mat-label>
+                        <mat-select formControlName="managerId" required>
+                            <mat-option *ngFor="let manager of managers" [value]="manager.managerId">
+                                {{manager.managerName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="managerId?.invalid">
+                            manager is required
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </mat-tab>
+
+            <mat-tab>
+                <div>
+                    <ng-template mat-tab-label>
+                        <mat-icon>location_city</mat-icon>
+                        <span> Address </span>
+                    </ng-template>
+
+                    <form class="normal-form" [formGroup]="addressForm" autocomplete="off">
+                        <input type="hidden" formControlName="addressId">
+                        <mat-form-field class="full-width">
+                            <mat-label>Line 1</mat-label>
+                            <input formControlName="line1" matInput placeholder="address line 1" required>
+                            <mat-icon matSuffix class="secondary-text">streetview</mat-icon>
+                            <mat-error *ngIf="line1?.invalid">
+                                address line 1 is required
+                            </mat-error>
+                        </mat-form-field>
+                        &nbsp;
+                        <mat-form-field class="full-width">
+                            <mat-label>Line 2</mat-label>
+                            <input formControlName="line2" matInput placeholder="address line 2">
+                            <mat-icon matSuffix class="secondary-text">streetview</mat-icon>
+                        </mat-form-field>
+                        &nbsp;
+                        <mat-form-field class="full-width">
+                            <mat-label>Postal Code</mat-label>
+                            <input formControlName="postalCode" matInput placeholder="postal code" required>
+                            <mat-icon matSuffix class="secondary-text">local_post_office</mat-icon>
+                            <mat-error *ngIf="postalCode?.invalid">
+                                postal code is required
+                            </mat-error>
+                        </mat-form-field>
+                        &nbsp;
+                        <mat-form-field class="full-width">
+                            <mat-label>Address Type</mat-label>
+                            <mat-select formControlName="addressTypeId" required>
+                                <mat-option *ngFor="let addressType of addressTypes"
+                                    [value]="addressType.addressTypeId">
+                                    {{addressType.addressDescription}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="addressTypeId?.invalid">
+                                address type is required
+                            </mat-error>
+                        </mat-form-field>
+                    </form>
+                    <mat-dialog-actions>
+                        <button color="primary" [disabled]="addUpdateEmployeeForm?.invalid && addressForm?.invalid"
+                            mat-button (click)="onFormSubmit()">Submit</button>
+                        <button color="warn" mat-button (click)="onDialogClose()">Cancel</button>
+                    </mat-dialog-actions>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-dialog-content>
+</div>
