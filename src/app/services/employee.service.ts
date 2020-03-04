@@ -24,98 +24,98 @@ export class EmployeeService {
     console.log(employee);
     return this.http.post<Employee>(baseUrl + 'AddEmployee', employee, httpOptions).pipe(
       tap(_ => console.log(`added new employee`)),
-      catchError(this.handleError<Employee>('AddEmployee'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   AddAddress(address: Address): Observable<Address> {
     return this.http.post<Address>(baseUrl + 'AddAddress', address, httpOptions).pipe(
       tap(_ => console.log(`added new address`)),
-      catchError(this.handleError<Address>('AddAddress'))
+      catchError(this.handleError<Address>())
     );
   }
 
   UpdateEmployee(employee: Employee): Observable<Employee> {
     return this.http.put<Employee>(baseUrl + 'UpdateEmployee', employee, httpOptions).pipe(
       tap(_ => console.log(`altered an employee id=${employee.firstName}`)),
-      catchError(this.handleError<Employee>('UpdateEmployee'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   UpdateAddress(address: Address): Observable<Address> {
     return this.http.put<Address>(baseUrl + 'UpdateAddress', address, httpOptions).pipe(
       tap(_ => console.log(`altered address id=${address.line1}`)),
-      catchError(this.handleError<Address>('UpdateAddress'))
+      catchError(this.handleError<Address>())
     );
   }
 
   DeleteEmployee(employeeId: Guid): Observable<Employee> {
     return this.http.delete<Employee>(baseUrl + 'DeleteEmployee/' + employeeId, httpOptions).pipe(
       tap(_ => console.log(`deleted employee`)),
-      catchError(this.handleError<Employee>('DeleteEmployee'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   GetAddressDetails(addressId: number): Observable<Address> {
     return this.http.get<Address>(baseUrl + 'GetAddressById/' + addressId, httpOptions).pipe(
       tap(_ => console.log(`fetched address`)),
-      catchError(this.handleError<Address>('GetAddressDetails'))
+      catchError(this.handleError<Address>())
     );
   }
 
   GetEmployeeDetails(employeeId: Guid): Observable<Employee> {
     return this.http.get<Employee>(baseUrl + 'GetEmployeeById/' + employeeId, httpOptions).pipe(
       tap(_ => console.log(`fetched employee`)),
-      catchError(this.handleError<Employee>('GetEmployeeDetails'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   GetGenders(): Observable<any> {
     return this.http.get<any[]>(baseUrl + 'GetGenders').pipe(
       tap(_ => console.log(`fetched all genders`)),
-      catchError(this.handleError<Employee>('GetGenders'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   GetManagers(): Observable<any> {
     return this.http.get<any[]>(baseUrl + 'GetManagers').pipe(
       tap(_ => console.log(`fetched all managers`)),
-      catchError(this.handleError<Employee>('GetManagers'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   GetAddressTypes(): Observable<any> {
     return this.http.get<any[]>(baseUrl + 'GetAddressTypes').pipe(
       tap(_ => console.log(`fetched all address types`)),
-      catchError(this.handleError<Employee>('GetAddressTypes'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   GetJobs(): Observable<any> {
     return this.http.get<any[]>(baseUrl + 'GetJobs').pipe(
       tap(_ => console.log(`fetched all job types`)),
-      catchError(this.handleError<Employee>('GetJobs'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   GetDepartments(): Observable<any> {
     return this.http.get<any[]>(baseUrl + 'GetDepartments').pipe(
       tap(_ => console.log(`fetched all departments`)),
-      catchError(this.handleError<Employee>('GetDepartments'))
+      catchError(this.handleError<Employee>())
     );
   }
 
   GetEmployees(): Observable<any> {
     return this.http.get<any[]>(baseUrl + 'GetAllEmployees').pipe(
       tap(_ => console.log(`fetched all employees`)),
-      catchError(this.handleError<Employee>('GetEmployees'))
+      catchError(this.handleError<Employee>())
     );
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
-      return of(result as T);
+      return of(result);
     };
   }
 }
